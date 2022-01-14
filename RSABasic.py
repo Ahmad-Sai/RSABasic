@@ -29,6 +29,7 @@ def isPrime(n, k):
     Decomposes n-1 into d*(2^r) where d is odd. Uses r and d to run the Miller-Rabin primality on n.
     The Miller-Rabin is run k times on n. The higher k is, the more certain it is that n is not composite (i.e it's prime).
     """
+    
     if n < 3:
         return False
     if n % 2 == 0:
@@ -138,18 +139,22 @@ def test(message, verbose=False, no_bits=512, e=65537, k=12):
         print("e: ", public_key["e"])
         print("\n")
         print("Private key: ", private_key)
+        print("\n")
 
     msg_encrypted = encrypt(public_key, stringToInt(message))
     if verbose:
         print("Encrypted Message:")
         print(msg_encrypted)
+        print("\n")
 
     msg_decrypted = decrypt(public_key, private_key, msg_encrypted)
     if verbose:
-        print("Decrypted Message:")
+        print("Decrypted Message as Int:")
         print(msg_decrypted)
+        print("\n")
         print("Original Message:")
         print(message)
+        print("\n")
 
     msg_final = intToString(msg_decrypted)
     if verbose:
@@ -157,3 +162,5 @@ def test(message, verbose=False, no_bits=512, e=65537, k=12):
         print(msg_final)
 
     return msg_final
+
+test("Hello, this is RSA program", True)
