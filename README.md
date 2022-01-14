@@ -7,14 +7,13 @@ RSA is an asymptotic encryption algorithm that uses a public-key to encrypt a me
 
 This program is a simple and clean implementation of the RSA encryption algorithim in Python.
 
-Requires an OS randomness source for SystemRandom().
-
-
+Dependencies:
+-  Random
 
 
 The function test() is the driver of the program. 
 
-Call it with your message as an argument:
+To run the program call the function test() with your message as an argument:
 
 ![image](https://user-images.githubusercontent.com/85080576/149442203-651d14e3-cbe8-43ba-a490-906407c8413e.png)
 
