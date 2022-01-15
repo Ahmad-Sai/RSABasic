@@ -29,7 +29,6 @@ def isPrime(n, k):
     Decomposes n-1 into d*(2^r) where d is odd. Uses r and d to run the Miller-Rabin primality on n.
     The Miller-Rabin is run k times on n. The higher k is, the more certain it is that n is not composite (i.e it's prime).
     """
-    
     if n < 3:
         return False
     if n % 2 == 0:
@@ -69,6 +68,7 @@ def findKeyD(phi,e):
     """
     Finds the private key d using the extended Euclidean algorithm
     """
+    
     x = 0
     old_x = 1
     y = 1
@@ -82,7 +82,11 @@ def findKeyD(phi,e):
         old_x, x = x, old_x - q*x
         old_y, y = y, old_y - q*y
     
+    
     d = old_y
+    d = d % phi
+    if(d < 0):
+        d += phi
     return d
 
 def generateKeys(no_bits, k, e = 65537):
@@ -149,7 +153,7 @@ def test(message, verbose=False, no_bits=512, e=65537, k=12):
 
     msg_decrypted = decrypt(public_key, private_key, msg_encrypted)
     if verbose:
-        print("Decrypted Message as Int:")
+        print("Decrypted Message:")
         print(msg_decrypted)
         print("\n")
         print("Original Message:")
@@ -163,4 +167,4 @@ def test(message, verbose=False, no_bits=512, e=65537, k=12):
 
     return msg_final
 
-test("Hello, this is RSA program", True)
+test("Hello, this is RSA program", verbose=True)
