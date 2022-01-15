@@ -82,9 +82,7 @@ def findKeyD(phi,e):
         old_x, x = x, old_x - q*x
         old_y, y = y, old_y - q*y
     
-    
-    d = old_y
-    d = d % phi
+    d = old_y % phi
     if(d < 0):
         d += phi
     return d
@@ -141,24 +139,24 @@ def test(message, verbose=False, no_bits=512, e=65537, k=12):
         print("Public key:")
         print("n: ", public_key["n"])
         print("e: ", public_key["e"])
-        print("\n")
+        print("-------------------------------------------------------")
         print("Private key: ", private_key)
-        print("\n")
+        print("-------------------------------------------------------")
 
     msg_encrypted = encrypt(public_key, stringToInt(message))
     if verbose:
         print("Encrypted Message:")
         print(msg_encrypted)
-        print("\n")
+        print("-------------------------------------------------------")
 
     msg_decrypted = decrypt(public_key, private_key, msg_encrypted)
     if verbose:
         print("Decrypted Message:")
         print(msg_decrypted)
-        print("\n")
+        print("-------------------------------------------------------")
         print("Original Message:")
         print(message)
-        print("\n")
+        print("-------------------------------------------------------")
 
     msg_final = intToString(msg_decrypted)
     if verbose:
